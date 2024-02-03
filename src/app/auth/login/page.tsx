@@ -9,13 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FaGithub } from "react-icons/fa";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import SignInWithGithub from "@/components/SignInWithGithub";
+import { Separator } from "@/components/ui/separator";
 
 const login = () => {
   return (
     <section className="min-h-screen flex justify-center items-center">
-      
       <Card className="min-w-[350px]">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
@@ -25,14 +24,16 @@ const login = () => {
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           <Input placeholder="name@example.com" type="email" />
-          <Button className="w-full" variant="outline">Sign in with Email</Button>
-        </CardContent>
-        <hr className="mx-5" />
-        <CardFooter className="mt-2">
-          <Button className="w-full flex gap-3">
-            <FaGithub />
-            Sign in with github
+          <Button className="w-full" variant="outline">
+            Sign in with Email
           </Button>
+        </CardContent>
+        <Separator />
+        <CardFooter className="mt-2 flex flex-col gap-2">
+          <CardDescription>
+            Or continue with
+          </CardDescription>
+          <SignInWithGithub />
         </CardFooter>
       </Card>
     </section>
