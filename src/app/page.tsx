@@ -9,8 +9,12 @@ export default function Home() {
       <div>
         <h2 className="text-2xl font-semibold">Welcome</h2>
         {session ? (
-          // Show the user's email if they are logged in
-          <p>Logged in as {session?.user?.email}</p>
+          <>
+          <p>Logged in as {session?.user.email}</p>
+          <h1>{session?.user.name}</h1>
+          <h1>{session?.user.role}</h1>
+          <h1>{session?.user.image}</h1>
+          </>
         ) : (
           // Prompt to sign in if the user is not logged in
           <p className="text-lg">
