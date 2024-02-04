@@ -1,6 +1,6 @@
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -35,14 +35,32 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
-  role          String    @default("user")
+  roles         Role[]
   accounts      Account[]
   sessions      Session[]
+  UserRole      UserRole[]
+}
+
+model Role {
+  id       String     @id @default(cuid())
+  name     String     @unique
+  users    User[]
+  UserRole UserRole[]
+}
+
+model UserRole {
+  userId String
+  roleId String
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
 }
 
 model VerificationToken {
